@@ -1,0 +1,5 @@
+C:\Users\m.bikov\source\repos\testDevexpress\testDevexpress\obj\Debug\testDevexpress.csproj.AssemblyReference.cache
+C:\Users\m.bikov\source\repos\testDevexpress\testDevexpress\obj\Debug\testDevexpress.reportNPT.resources
+C:\Users\m.bikov\source\repos\testDevexpress\testDevexpress\obj\Debug\testDevexpress.Properties.Resources.resources
+C:\Users\m.bikov\source\repos\testDevexpress\testDevexpress\obj\Debug\testDevexpress.csproj.GenerateResource.cache
+C:\Users\m.bikov\source\repos\testDevexpress\testDevexpress\obj\Debug\testDevexpress.csproj.CoreCompileInputs.cache
