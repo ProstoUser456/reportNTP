@@ -16,6 +16,8 @@ namespace testDevexpress
     public partial class reportNPT : DevExpress.XtraEditors.XtraForm
     {
 
+
+
         private readonly DatabaseHelper _db;
         private string _lastSearchText = "";
         private DateTime _lastSearchTime = DateTime.MinValue;
@@ -29,18 +31,61 @@ namespace testDevexpress
             this.Load += ReportNPT_Load;
         }
 
+
+        //временная переменная отвечаютщая за периоды  /////////////////Временно КОНЕЦ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        private DataTable _periodsTable;
+
         private void ReportNPT_Load(object sender, EventArgs e)
         {
+            // Пример данных – можно потом заменить на загрузку из БД           \\\\\\\\\ВРЕМЕННО(формирование подразделений/////////////
+            var departments = new List<string>
+                {
+                    "Бухгалтерия",
+                    "Отдел кадров",
+                    "IT отдел",
+                    "Маркетинг",
+                    "Продажи",
+                    "Склад",
+                    "Производство",
+                    "Безопасность",
+                    "Юридический отдел",
+                    "Финансы",
+                    "Поддержка клиентов",
+                    "Развитие",
+                    "Логистика",
+                    "Закупки",
+                    "Администрация"
+                };
+
+            checkedListDepartments.Items.AddRange(departments.ToArray());
+
+            /////////////////Временно КОНЕЦ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+            /////////////////Временно (формироввание периодов)\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+            // Настраиваем ComboBoxEdit
+            comboPeriodicity.Properties.Items.AddRange(new[] { "День", "Неделя", "Месяц", "Год" });
+            comboPeriodicity.SelectedIndex = 0;
+
+            // Настраиваем таблицу DataTable
+            _periodsTable = new DataTable();
+            _periodsTable.Columns.Add("Дата начала", typeof(DateTime));
+            _periodsTable.Columns.Add("Дата конца", typeof(DateTime));
+            _periodsTable.Columns.Add("Периодичность", typeof(string));
+
+
+
+            // Привязываем таблицу к GridControl
+            gridPeriods.DataSource = _periodsTable;
+
+            // Настраиваем внешний вид
+            gridViewPeriods.OptionsBehavior.Editable = false;
+            gridViewPeriods.OptionsView.ShowGroupPanel = false;
+
+            /////////////////Временно (формироввание периодов) КОНЕЦ\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
             //LoadNomenclatureNames();
-
-            // Настройка поискового элемента
-            searchLookUpEdit1.Properties.NullText = "Введите название номенклатуры...";
-            searchLookUpEdit1.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains;
-            searchLookUpEdit1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-
-            // Подписка на изменение текста
-            searchLookUpEdit1.TextChanged += SearchLookUpEdit1_TextChanged;
-
         }
 
         private void LoadNomenclatureNames()
@@ -69,66 +114,56 @@ namespace testDevexpress
             }
         }
 
-        private async void SearchLookUpEdit1_TextChanged(object sender, EventArgs e)
+        private void btnAddNomenclature_Click(object sender, EventArgs e)
         {
-            string text = searchLookUpEdit1.Text.Trim();
 
-            // Не дергать базу слишком часто
-            if (text == _lastSearchText) return;
-            if ((DateTime.Now - _lastSearchTime).TotalMilliseconds < 500) return;
+        }
 
-            _lastSearchText = text;
-            _lastSearchTime = DateTime.Now;
 
-            if (text.Length < 2)
+        // код под выбор подразделений 
+
+
+        // код для выбора периода/переодичности
+
+        private void BtnAddPeriod_Click(object sender, EventArgs e)
+        {
+            if (dateStartEdit.EditValue == null || dateEndEdit.EditValue == null)
             {
-                // Не искать при коротком вводе
-                searchLookUpEdit1.Properties.DataSource = null;
+                XtraMessageBox.Show("Укажите даты начала и конца!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            try
+            DateTime startDate = (DateTime)dateStartEdit.EditValue;
+            DateTime endDate = (DateTime)dateEndEdit.EditValue;
+            string periodicity = comboPeriodicity.Text;
+
+            if (endDate < startDate)
             {
-                DataTable dt = new DataTable();
-                using (var conn = _db.GetConnection())
-                {
-                    await conn.OpenAsync();
-
-                    string query = @"
-                    SELECT TOP 50 Name 
-                    FROM dbo.Nomenclature 
-                    WHERE Name LIKE @search + '%' 
-                    ORDER BY Name";
-
-                    MessageBox.Show("Запрос выполнен");
-
-                    using (var cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@search", text);
-                        using (var da = new SqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                        }
-                    }
-                }
-
-                searchLookUpEdit1.Properties.DataSource = dt;
-                searchLookUpEdit1.Properties.DisplayMember = "Name";
-                searchLookUpEdit1.Properties.ValueMember = "Id";
-                searchLookUpEdit1.ShowPopup();
+                XtraMessageBox.Show("Дата конца не может быть раньше даты начала!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            catch (Exception ex)
-            {
-               MessageBox.Show("Ошибка при поиске: " + ex.Message);
-            }
+
+            _periodsTable.Rows.Add(startDate, endDate, periodicity);
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        // Метод для получения данных из таблицы
+        public List<(DateTime Start, DateTime End, string Periodicity)> GetPeriods()
         {
-            if (searchLookUpEdit1.EditValue == null) return;
+            return _periodsTable.AsEnumerable()
+                .Select(row => (
+                    Start: row.Field<DateTime>("Дата начала"),
+                    End: row.Field<DateTime>("Дата конца"),
+                    Periodicity: row.Field<string>("Периодичность")
+                ))
+                .ToList();
+        }
 
-            string name = searchLookUpEdit1.Text;
-            listBoxControl1.Items.Add(name);
+
+
+        // код для формирования отчёта 
+        private void BtnGenerateReport_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

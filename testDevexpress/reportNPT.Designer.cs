@@ -28,82 +28,171 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.searchLookUpEdit1 = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.checkedListBoxControl1 = new DevExpress.XtraEditors.CheckedListBoxControl();
-            this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).BeginInit();
+            this.checkedListDepartments = new DevExpress.XtraEditors.CheckedListBoxControl();
+            this.btnGenerateReport = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.dateStartEdit = new DevExpress.XtraEditors.DateEdit();
+            this.dateEndEdit = new DevExpress.XtraEditors.DateEdit();
+            this.comboPeriodicity = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.btnAddPeriod = new DevExpress.XtraEditors.SimpleButton();
+            this.gridPeriods = new DevExpress.XtraGrid.GridControl();
+            this.gridViewPeriods = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnAddNomenclature = new DevExpress.XtraEditors.SimpleButton();
+            this.treeListNomenclature = new DevExpress.XtraTreeList.TreeList();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListDepartments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStartEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStartEdit.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEndEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEndEdit.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboPeriodicity.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridPeriods)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewPeriods)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListNomenclature)).BeginInit();
             this.SuspendLayout();
             // 
-            // searchLookUpEdit1
+            // checkedListDepartments
             // 
-            this.searchLookUpEdit1.Location = new System.Drawing.Point(35, 32);
-            this.searchLookUpEdit1.Name = "searchLookUpEdit1";
-            this.searchLookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.checkedListDepartments.Location = new System.Drawing.Point(986, 35);
+            this.checkedListDepartments.Name = "checkedListDepartments";
+            this.checkedListDepartments.Size = new System.Drawing.Size(207, 147);
+            this.checkedListDepartments.TabIndex = 4;
+            // 
+            // btnGenerateReport
+            // 
+            this.btnGenerateReport.Location = new System.Drawing.Point(986, 359);
+            this.btnGenerateReport.Name = "btnGenerateReport";
+            this.btnGenerateReport.Size = new System.Drawing.Size(207, 23);
+            this.btnGenerateReport.TabIndex = 5;
+            this.btnGenerateReport.Text = "Сформировать отчёт";
+            this.btnGenerateReport.Click += new System.EventHandler(this.BtnGenerateReport_Click);
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.gridPeriods);
+            this.groupControl1.Controls.Add(this.btnAddPeriod);
+            this.groupControl1.Controls.Add(this.comboPeriodicity);
+            this.groupControl1.Controls.Add(this.dateEndEdit);
+            this.groupControl1.Controls.Add(this.dateStartEdit);
+            this.groupControl1.Location = new System.Drawing.Point(370, 35);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(557, 434);
+            this.groupControl1.TabIndex = 6;
+            this.groupControl1.Text = "groupControl1";
+            // 
+            // dateStartEdit
+            // 
+            this.dateStartEdit.EditValue = null;
+            this.dateStartEdit.Location = new System.Drawing.Point(14, 26);
+            this.dateStartEdit.Name = "dateStartEdit";
+            this.dateStartEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.searchLookUpEdit1.Properties.PopupView = this.searchLookUpEdit1View;
-            this.searchLookUpEdit1.Size = new System.Drawing.Size(300, 20);
-            this.searchLookUpEdit1.TabIndex = 0;
+            this.dateStartEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateStartEdit.Size = new System.Drawing.Size(100, 20);
+            this.dateStartEdit.TabIndex = 0;
             // 
-            // searchLookUpEdit1View
+            // dateEndEdit
             // 
-            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
-            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.dateEndEdit.EditValue = null;
+            this.dateEndEdit.Location = new System.Drawing.Point(14, 52);
+            this.dateEndEdit.Name = "dateEndEdit";
+            this.dateEndEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEndEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateEndEdit.Size = new System.Drawing.Size(100, 20);
+            this.dateEndEdit.TabIndex = 1;
             // 
-            // simpleButton1
+            // comboPeriodicity
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(35, 58);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(300, 23);
-            this.simpleButton1.TabIndex = 1;
-            this.simpleButton1.Text = "Добавить выбранные позиции";
+            this.comboPeriodicity.Location = new System.Drawing.Point(140, 26);
+            this.comboPeriodicity.Name = "comboPeriodicity";
+            this.comboPeriodicity.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.comboPeriodicity.Size = new System.Drawing.Size(166, 20);
+            this.comboPeriodicity.TabIndex = 2;
             // 
-            // checkedListBoxControl1
+            // btnAddPeriod
             // 
-            this.checkedListBoxControl1.Location = new System.Drawing.Point(35, 87);
-            this.checkedListBoxControl1.Name = "checkedListBoxControl1";
-            this.checkedListBoxControl1.Size = new System.Drawing.Size(300, 95);
-            this.checkedListBoxControl1.TabIndex = 2;
+            this.btnAddPeriod.Location = new System.Drawing.Point(354, 29);
+            this.btnAddPeriod.Name = "btnAddPeriod";
+            this.btnAddPeriod.Size = new System.Drawing.Size(75, 23);
+            this.btnAddPeriod.TabIndex = 3;
+            this.btnAddPeriod.Text = "Добавить период/переодичность";
+            this.btnAddPeriod.Click += new System.EventHandler(this.BtnAddPeriod_Click);
             // 
-            // listBoxControl1
+            // gridPeriods
             // 
-            this.listBoxControl1.Location = new System.Drawing.Point(35, 215);
-            this.listBoxControl1.Name = "listBoxControl1";
-            this.listBoxControl1.Size = new System.Drawing.Size(300, 95);
-            this.listBoxControl1.TabIndex = 3;
+            this.gridPeriods.Location = new System.Drawing.Point(14, 93);
+            this.gridPeriods.MainView = this.gridViewPeriods;
+            this.gridPeriods.Name = "gridPeriods";
+            this.gridPeriods.Size = new System.Drawing.Size(533, 327);
+            this.gridPeriods.TabIndex = 4;
+            this.gridPeriods.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewPeriods});
+            // 
+            // gridViewPeriods
+            // 
+            this.gridViewPeriods.GridControl = this.gridPeriods;
+            this.gridViewPeriods.Name = "gridViewPeriods";
+            // 
+            // btnAddNomenclature
+            // 
+            this.btnAddNomenclature.Location = new System.Drawing.Point(12, 128);
+            this.btnAddNomenclature.Name = "btnAddNomenclature";
+            this.btnAddNomenclature.Size = new System.Drawing.Size(319, 23);
+            this.btnAddNomenclature.TabIndex = 1;
+            this.btnAddNomenclature.Text = "Добавить выбранные позиции";
+            this.btnAddNomenclature.Click += new System.EventHandler(this.btnAddNomenclature_Click);
+            // 
+            // treeListNomenclature
+            // 
+            this.treeListNomenclature.Location = new System.Drawing.Point(12, 12);
+            this.treeListNomenclature.Name = "treeListNomenclature";
+            this.treeListNomenclature.Size = new System.Drawing.Size(319, 95);
+            this.treeListNomenclature.TabIndex = 7;
             // 
             // reportNPT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 417);
-            this.Controls.Add(this.listBoxControl1);
-            this.Controls.Add(this.checkedListBoxControl1);
-            this.Controls.Add(this.simpleButton1);
-            this.Controls.Add(this.searchLookUpEdit1);
+            this.ClientSize = new System.Drawing.Size(1205, 521);
+            this.Controls.Add(this.treeListNomenclature);
+            this.Controls.Add(this.groupControl1);
+            this.Controls.Add(this.btnGenerateReport);
+            this.Controls.Add(this.checkedListDepartments);
+            this.Controls.Add(this.btnAddNomenclature);
             this.Name = "reportNPT";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedListBoxControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkedListDepartments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dateStartEdit.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateStartEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEndEdit.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateEndEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.comboPeriodicity.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridPeriods)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewPeriods)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeListNomenclature)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private DevExpress.XtraEditors.SearchLookUpEdit searchLookUpEdit1;
-        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.CheckedListBoxControl checkedListBoxControl1;
-        private DevExpress.XtraEditors.ListBoxControl listBoxControl1;
+        private DevExpress.XtraEditors.CheckedListBoxControl checkedListDepartments;
+        private DevExpress.XtraEditors.SimpleButton btnGenerateReport;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.SimpleButton btnAddPeriod;
+        private DevExpress.XtraEditors.ComboBoxEdit comboPeriodicity;
+        private DevExpress.XtraEditors.DateEdit dateEndEdit;
+        private DevExpress.XtraEditors.DateEdit dateStartEdit;
+        private DevExpress.XtraGrid.GridControl gridPeriods;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewPeriods;
+        private DevExpress.XtraEditors.SimpleButton btnAddNomenclature;
+        private DevExpress.XtraTreeList.TreeList treeListNomenclature;
     }
 }
 
